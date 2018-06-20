@@ -1,0 +1,20 @@
+from collections import defaultdict
+
+import sys
+
+counts = defaultdict(int)
+ID = 0
+my_text = open('kyoto-train.ja', 'r+', encoding = 'utf-8')
+
+for line in my_text:
+	words = line.strip().split()
+	for w in words:
+		ID += 1
+		counts[w] += 1
+	else:
+		counts[w] = 1
+	
+for key, value in sorted(counts.items(), key = lambda item:(item[1])):
+	ID += 1
+	print (str(ID), key, value)
+
