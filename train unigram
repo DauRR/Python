@@ -1,0 +1,27 @@
+from collections import defaultdict
+
+import sys
+
+total_count = 0
+
+counts = defaultdict(lambda:0)
+
+training_file = open("kyoto1.txt")	
+
+for line in training_file:
+	words = line.strip().split()
+	words.append("/s")
+	for word in words:
+		counts[word] += 1
+		total_count += 1
+
+
+model_file = open('modelfile.txt', 'w')
+#model_file.write("Hello, my name is")
+
+
+for word, count in sorted(counts.items()):
+	probability = counts[word]/total_count
+	model_file.write(str(word) + '\t' + str(probability) + '\n')
+	print(str(word), "\t", str(probability), '\n')
+model_file.close()
